@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>UZ GAMES 3D — O'zbekcha 3D O'yinlar Platformasi</title>
+    <meta
+      name="description"
+      content="O'zbek tilidagi zamonaviy 3D o'yinlar platformasi — barcha yosh toifalari uchun 40 dan ortiq o'yinlar va realistik 3D avtopoyga."
+    />
+    <meta property="og:title" content="UZ GAMES 3D" />
+    <meta
+      property="og:description"
+      content="O'zbek tilidagi zamonaviy 3D o'yinlar platformasi — barcha yosh toifalari uchun 40 dan ortiq o'yinlar va realistik 3D avtopoyga."
+    />
+    <meta property="og:type" content="website" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/style.css" />
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "/vendor/three/build/three.module.js",
+          "three/addons/": "/vendor/three/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Initial Splash Loader -->
+    <div id="splash-loader" class="splash-loader" aria-live="polite">
+      <div class="splash-inner">
+        <div class="splash-emblem" aria-hidden="true">3D</div>
+        <p class="splash-title">UZ GAMES 3D</p>
+        <p class="splash-sub">O'yin olami yuklanmoqda...</p>
+        <div class="splash-bar"><span class="splash-bar-fill"></span></div>
+      </div>
+    </div>
+
+    <!-- Onboarding: Age Selection & Registration -->
+    <section id="onboarding-screen" class="onboarding-screen hidden" aria-label="Ro'yxatdan o'tish">
+      <div class="onboarding-backdrop" aria-hidden="true">
+        <div class="orb orb-cyan"></div>
+        <div class="orb orb-violet"></div>
+        <div class="grid-plane"></div>
+      </div>
+
+      <div class="onboarding-container">
+        <div class="onboarding-brand">UZ GAMES 3D</div>
+
+        <!-- Step 1: Age Selection -->
+        <div id="age-step" class="onboarding-step">
+          <h1 class="onboarding-heading">UZ GAMES 3D platformasiga xush kelibsiz!</h1>
+          <p class="onboarding-question">Siz necha yoshdasiz?</p>
+
+          <div class="age-grid" role="list">
+            <button type="button" class="age-card age-card-kids" data-age="3-5" role="listitem">
+              <div class="age-card-visual" aria-hidden="true">
+                <svg viewBox="0 0 80 80" fill="none">
+                  <circle cx="40" cy="40" r="32" fill="rgba(255,255,255,0.16)" />
+                  <path d="M22 48c0-9 8-16 18-16s18 7 18 16H22z" fill="#FFD166" />
+                  <circle cx="30" cy="51" r="6" fill="#1E293B" />
+                  <circle cx="50" cy="51" r="6" fill="#1E293B" />
+                  <path d="M35 28l5-8 5 8" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+                </svg>
+              </div>
+              <div class="age-card-body">
+                <span class="age-card-title">3–5 yosh</span>
+                <span class="age-card-desc">Rangli, quvnoq va xavfsiz o'rgatuvchi o'yinlar</span>
+              </div>
+            </button>
+
+            <button type="button" class="age-card age-card-junior" data-age="6-9" role="listitem">
+              <div class="age-card-visual" aria-hidden="true">
+                <svg viewBox="0 0 80 80" fill="none">
+                  <rect x="12" y="12" width="56" height="56" rx="16" fill="rgba(255,255,255,0.14)" />
+                  <path d="M24 50l16-24 16 24H24z" fill="#38BDF8" />
+                  <circle cx="40" cy="39" r="6" fill="#FFFFFF" />
+                  <path d="M18 56h44" stroke="#A7F3D0" stroke-width="3" stroke-linecap="round" />
+                </svg>
+              </div>
+              <div class="age-card-body">
+                <span class="age-card-title">6–9 yosh</span>
+                <span class="age-card-desc">3D sarguzashtlar, dinozavrlar va ilk poygalar</span>
+              </div>
+            </button>
+
+            <button type="button" class="age-card age-card-teen" data-age="10-15" role="listitem">
+              <div class="age-card-visual" aria-hidden="true">
+                <svg viewBox="0 0 80 80" fill="none">
+                  <polygon points="40,10 68,26 68,54 40,70 12,54 12,26" fill="rgba(255,255,255,0.14)" />
+                  <path d="M22 46l10-14h16l10 14H22z" fill="#A78BFA" />
+                  <circle cx="30" cy="49" r="5" fill="#00E5FF" />
+                  <circle cx="50" cy="49" r="5" fill="#00E5FF" />
+                </svg>
+              </div>
+              <div class="age-card-body">
+                <span class="age-card-title">10–15 yosh</span>
+                <span class="age-card-desc">Formula, motopoyga, futbol va koinot missiyalari</span>
+              </div>
+            </button>
+
+            <button type="button" class="age-card age-card-pro" data-age="16-20" role="listitem">
+              <div class="age-card-visual" aria-hidden="true">
+                <svg viewBox="0 0 80 80" fill="none">
+                  <circle cx="40" cy="40" r="30" stroke="rgba(255,255,255,0.35)" stroke-width="2" />
+                  <path d="M16 46h48l-6-14H24l-8 14z" fill="#F43F5E" />
+                  <rect x="26" y="34" width="24" height="6" rx="2" fill="#0F172A" />
+                  <circle cx="26" cy="50" r="6" fill="#E2E8F0" />
+                  <circle cx="54" cy="50" r="6" fill="#E2E8F0" />
+                </svg>
+              </div>
+              <div class="age-card-body">
+                <span class="age-card-title">16–20 yosh</span>
+                <span class="age-card-desc">Ultra-realistik 3D simulyatorlar va chempionatlar</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Name Registration -->
+        <div id="name-step" class="onboarding-step hidden">
+          <button type="button" id="back-to-age-btn" class="text-back-btn">
+            &larr; Yoshni qayta tanlash
+          </button>
+          <p class="selected-age-note" id="selected-age-label"></p>
+          <h2 class="onboarding-heading">Ismingiz nima?</h2>
+          <p class="onboarding-subtext">
+            Shaxsiy rekordlar va yutuqlaringizni saqlash uchun ismingizni kiriting.
+          </p>
+
+          <form id="registration-form" class="registration-form" novalidate>
+            <label for="player-name-input" class="sr-only">Ismingiz</label>
+            <input
+              id="player-name-input"
+              type="text"
+              maxlength="24"
+              autocomplete="name"
+              placeholder="Masalan: Jasurbek"
+              class="name-input"
+              required
+            />
+            <p id="name-error" class="form-error" role="alert"></p>
+            <button type="submit" class="btn-primary btn-lg">Boshlash</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Platform Application -->
+    <div id="app-shell" class="app-shell hidden">
+      <!-- 3-Zone Top Navigation Bar -->
+      <header class="topbar">
+        <a href="#hero-showcase" class="brand-wordmark" id="brand-home-link">UZ GAMES 3D</a>
+
+        <nav class="main-nav" aria-label="Asosiy menyu">
+          <a href="#hero-showcase" class="nav-link active" data-nav="home">Bosh sahifa</a>
+          <a href="#library-section" class="nav-link" data-nav="games">O'yinlar</a>
+          <a href="#featured-racing" class="nav-link" id="nav-quick-race" data-nav="racing">3D Poyga</a>
+          <button type="button" class="nav-link nav-btn-link" id="nav-achievements-btn">Yutuqlar</button>
+          <button type="button" class="nav-link nav-btn-link" id="nav-settings-btn">Sozlamalar</button>
+        </nav>
+
+        <div class="topbar-action">
+          <button type="button" id="open-profile-btn" class="btn-profile">
+            <span id="header-player-name" class="truncate-name">O'yinchi</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <!-- Personalized Welcome & Control Strip -->
+        <section class="welcome-strip" aria-label="Xush kelibsiz va qidiruv">
+          <div class="welcome-copy">
+            <p class="welcome-greeting" id="welcome-greeting">Xush kelibsiz!</p>
+            <p class="welcome-meta" id="welcome-meta">Yoshingizga mos 3D va interaktiv o'yinlar</p>
+          </div>
+
+          <div class="search-controls">
+            <div class="search-box">
+              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
+              <input
+                type="search"
+                id="game-search-input"
+                placeholder="O'yin qidirish (masalan: Formula, Dinozavr, Futbol)..."
+                aria-label="O'yin qidirish"
+              />
+              <button type="button" id="clear-search-btn" class="clear-search-btn hidden" aria-label="Qidiruvni tozalash">
+                &times;
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Featured Hero Showcase -->
+        <section id="hero-showcase" class="hero-showcase">
+          <div class="hero-content">
+            <p class="hero-kicker" id="hero-kicker">Flagman 3D Simulyator</p>
+            <h1 class="hero-title" id="hero-title">3D Avtomobil Poygasi: Chempionlar Yo'li</h1>
+            <p class="hero-desc" id="hero-desc">
+              Realistik fizika, tungi megapolis va sahro trassalari, drift tizimi, 1- va 3-shaxs
+              kameralari hamda maxsus dvigatel tovushlari bilan haqiqiy 3D poygani sinab ko'ring.
+            </p>
+            <div class="hero-actions">
+              <button type="button" id="hero-play-btn" class="btn-primary">Hoziroq o'ynash</button>
+              <button type="button" id="hero-garage-btn" class="btn-secondary">Barcha o'yinlarni ko'rish</button>
+            </div>
+            <div class="hero-specs" aria-label="O'yin xususiyatlari">
+              <span>60 FPS 3D WebGL</span>
+              <span aria-hidden="true">&middot;</span>
+              <span>8 xil sport va yuk mashinalari</span>
+              <span aria-hidden="true">&middot;</span>
+              <span>Kompyuter va mobil boshqaruv</span>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <canvas id="hero-preview-canvas" aria-label="3D avtomobil ko'rinishi"></canvas>
+            <div class="hero-visual-caption">
+              <span>Jonli 3D Garaj</span>
+              <span aria-hidden="true">&middot;</span>
+              <span id="hero-car-label">Neon GT Kupe</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Age & Category Filter Bar -->
+        <section class="filter-toolbar" aria-label="Yosh va kategoriya filtrlari">
+          <div class="filter-group">
+            <span class="filter-label">Yosh toifasi:</span>
+            <div class="segmented-bar" id="age-filter-bar" role="tablist" aria-label="Yosh toifalari">
+              <button type="button" class="seg-btn" data-age-filter="3-5" role="tab">3–5 yosh</button>
+              <button type="button" class="seg-btn" data-age-filter="6-9" role="tab">6–9 yosh</button>
+              <button type="button" class="seg-btn" data-age-filter="10-15" role="tab">10–15 yosh</button>
+              <button type="button" class="seg-btn" data-age-filter="16-20" role="tab">16–20 yosh</button>
+              <button type="button" class="seg-btn" data-age-filter="all" role="tab">Barchasi (40)</button>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-label">Kategoriya:</span>
+            <div class="segmented-bar" id="category-filter-bar" role="tablist" aria-label="O'yin kategoriyalari">
+              <button type="button" class="seg-btn active" data-category="all" role="tab">Barchasi</button>
+              <button type="button" class="seg-btn" data-category="Poyga" role="tab">Poyga</button>
+              <button type="button" class="seg-btn" data-category="3D Simulyator" role="tab">3D Simulyator</button>
+              <button type="button" class="seg-btn" data-category="Sarguzasht" role="tab">Sarguzasht</button>
+              <button type="button" class="seg-btn" data-category="Sport" role="tab">Sport</button>
+              <button type="button" class="seg-btn" data-category="Kosmos va Aviatsiya" role="tab">Kosmos va Aviatsiya</button>
+              <button type="button" class="seg-btn" data-category="Ta'lim va Mantiq" role="tab">Ta'lim va Mantiq</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Primary Filtered Game Library -->
+        <section id="library-section" class="catalog-section">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title" id="library-section-title">Sizning o'yinlar kutubxonangiz</h2>
+              <p class="section-subtitle" id="library-section-count">10 ta o'yin mavjud</p>
+            </div>
+          </div>
+          <div id="library-grid" class="games-grid"></div>
+          <div id="empty-search-state" class="empty-state hidden">
+            <p class="empty-title">Hech qanday o'yin topilmadi</p>
+            <p class="empty-desc">Qidiruv so'zini o'zgartiring yoki barcha yosh toifalarini tanlang.</p>
+            <button type="button" id="reset-filters-btn" class="btn-secondary">Filtrlarni tozalash</button>
+          </div>
+        </section>
+
+        <!-- Recently Played -->
+        <section id="recent-section" class="catalog-section hidden">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Yaqinda o'ynalgan</h2>
+              <p class="section-subtitle">Oxirgi marta ishga tushirilgan o'yinlaringiz</p>
+            </div>
+          </div>
+          <div id="recent-grid" class="games-grid"></div>
+        </section>
+
+        <!-- Favorite Games -->
+        <section id="favorites-section" class="catalog-section hidden">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Sevimli o'yinlar</h2>
+              <p class="section-subtitle">Yurakcha bosilgan eng yoqtirgan o'yinlaringiz</p>
+            </div>
+          </div>
+          <div id="favorites-grid" class="games-grid"></div>
+        </section>
+
+        <!-- Popular Games -->
+        <section id="popular-section" class="catalog-section">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Ommabop o'yinlar</h2>
+              <p class="section-subtitle">Platformadagi eng ko'p o'ynaladigan hit o'yinlar</p>
+            </div>
+          </div>
+          <div id="popular-grid" class="games-grid"></div>
+        </section>
+
+        <!-- Recommended Games -->
+        <section id="recommended-section" class="catalog-section">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Tavsiya etilgan o'yinlar</h2>
+              <p class="section-subtitle">Yoshingiz va qiziqishlaringizga mos saralangan</p>
+            </div>
+          </div>
+          <div id="recommended-grid" class="games-grid"></div>
+        </section>
+
+        <!-- New Games -->
+        <section id="new-section" class="catalog-section">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Yangi o'yinlar</h2>
+              <p class="section-subtitle">Yangi qo'shilgan 3D va interaktiv sarguzashtlar</p>
+            </div>
+          </div>
+          <div id="new-grid" class="games-grid"></div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div>
+            <p class="footer-brand">UZ GAMES 3D</p>
+            <p class="footer-note">O'zbek tilidagi xavfsiz, tezkor va bepul 3D o'yinlar platformasi.</p>
+          </div>
+          <div class="footer-links">
+            <button type="button" class="footer-link-btn" id="footer-profile-btn">Shaxsiy kabinet</button>
+            <button type="button" class="footer-link-btn" id="footer-settings-btn">Sozlamalar</button>
+            <button type="button" class="footer-link-btn" id="footer-age-btn">Yoshni almashtirish</button>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Active Game Player Modal -->
+    <div id="game-modal" class="game-modal hidden" role="dialog" aria-modal="true" aria-labelledby="active-game-title">
+      <div class="game-modal-bar">
+        <div class="game-modal-info">
+          <h2 id="active-game-title" class="game-modal-title">O'yin nomi</h2>
+          <span class="game-modal-meta" id="active-game-meta">Kategoriya &middot; Rekord: 0</span>
+        </div>
+
+        <div class="game-modal-actions">
+          <button type="button" id="modal-fav-btn" class="icon-action-btn" title="Sevimlilarga qo'shish">
+            Sevimli
+          </button>
+          <button type="button" id="modal-sound-btn" class="icon-action-btn" title="Ovozni yoqish/o'chirish">
+            Ovoz: Yoqilgan
+          </button>
+          <button type="button" id="modal-fullscreen-btn" class="icon-action-btn" title="To'liq ekran">
+            To'liq ekran
+          </button>
+          <button type="button" id="modal-restart-btn" class="icon-action-btn" title="Qayta boshlash">
+            Qayta boshlash
+          </button>
+          <button type="button" id="modal-close-btn" class="btn-danger-sm">
+            Chiqish
+          </button>
+        </div>
+      </div>
+
+      <div id="game-viewport" class="game-viewport">
+        <div id="game-loading" class="game-loading hidden">
+          <div class="spinner" aria-hidden="true"></div>
+          <p>O'yin yuklanmoqda...</p>
+        </div>
+        <div id="game-stage" class="game-stage"></div>
+      </div>
+
+      <div class="game-modal-footer">
+        <p id="active-game-controls-hint" class="controls-hint"></p>
+      </div>
+    </div>
+
+    <!-- Profile & Achievements Modal -->
+    <div id="profile-modal" class="overlay-modal hidden" role="dialog" aria-modal="true" aria-labelledby="profile-modal-title">
+      <div class="modal-card">
+        <div class="modal-card-header">
+          <h2 id="profile-modal-title">O'yinchi profili va yutuqlar</h2>
+          <button type="button" class="modal-close-x" id="close-profile-btn" aria-label="Yopish">&times;</button>
+        </div>
+        <div id="profile-modal-body" class="modal-card-body"></div>
+      </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="overlay-modal hidden" role="dialog" aria-modal="true" aria-labelledby="settings-modal-title">
+      <div class="modal-card">
+        <div class="modal-card-header">
+          <h2 id="settings-modal-title">Platforma sozlamalari</h2>
+          <button type="button" class="modal-close-x" id="close-settings-btn" aria-label="Yopish">&times;</button>
+        </div>
+        <div id="settings-modal-body" class="modal-card-body"></div>
+      </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <script type="module" src="/script.js"></script>
+  </body>
+</html>
